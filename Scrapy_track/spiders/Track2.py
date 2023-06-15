@@ -17,17 +17,17 @@ class TrackTowSpider(scrapy.Spider):
             yield response.follow(book_url, callback= self.parse_book_page)
 
     def parse_book_page(self, response):
-        title = response.css(".product_main h1::text").get()
-        price = response.css(".product_main p::text").get()
-        description = response.xpath("//article/p/text()").get()
-        category = response.xpath("//ul[@class='breadcrumb']/li[3]/a/text()").get()
+        # title = response.css(".product_main h1::text").get()
+        # price = response.css(".product_main p::text").get()
+        # description = response.xpath("//article/p/text()").get()
+        # category = response.xpath("//ul[@class='breadcrumb']/li[3]/a/text()").get()
 
         book_item = BookItem()
 
-        book_item["title"] = title
-        book_item["price"] = price
-        book_item["description"] = description
-        book_item["category"] = category
+        book_item["title"] = response.css(".product_main h1::text").get()
+        book_item["price"] = response.css(".product_main p::text").get()
+        book_item["description"] = response.xpath("//article/p/text()").get()
+        book_item["category"] = response.xpath("//ul[@class='breadcrumb']/li[3]/a/text()").get()
 
         yield book_item
 

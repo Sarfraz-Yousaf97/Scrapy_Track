@@ -11,6 +11,10 @@ class ScrapyTrackItem(scrapy.Item):
     name = scrapy.Field()
     pass
 
+# def get_serilized_data(value):
+#     return f'$ {str(value)}'
+
+
 class BookItem(scrapy.Item):
     title = scrapy.Field()
     price = scrapy.Field()
