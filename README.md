@@ -1,5 +1,5 @@
 # Scrapy
-Clone repository from `www.example.com`  
+Clone repository from `https://github.com/Sarfraz-Yousaf97/Scrapy_Track.git`  
 cd projectName  
 Install virtualenv `pip install virtualenv env`  
 Create virtualenv `virtualenv env`  
