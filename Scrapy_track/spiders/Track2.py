@@ -1,0 +1,34 @@
+import scrapy
+from Scrapy_track.items import BookItem
+
+class TrackTowSpider(scrapy.Spider):
+    name = 'TrackTow'
+    allowed_domains = ['books.toscrape.com']
+    start_urls = ['https://books.toscrape.com/']
+
+    def parse(self, response):
+        books = response.css("article.product_pod")
+        for book in books:
+            relative_url = book.css("h3 a ::attr(href)").get()
+            if 'catalogue/' in relative_url:
+                book_url = 'https://books.toscrape.com/' + relative_url
+            else:
+                book_url = 'https://books.toscrape.com/catalogue/' + relative_url 
+            yield response.follow(book_url, callback= self.parse_book_page)
+
+    def parse_book_page(self, response):
+        title = response.css(".product_main h1::text").get()
+        price = response.css(".product_main p::text").get()
+        description = response.xpath("//article/p/text()").get()
+        category = response.xpath("//ul[@class='breadcrumb']/li[3]/a/text()").get()
+
+        book_item = BookItem()
+
+        book_item["title"] = title
+        book_item["price"] = price
+        book_item["description"] = description
+        book_item["category"] = category
+
+        yield book_item
+
+
