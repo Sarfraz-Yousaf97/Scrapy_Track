@@ -66,6 +66,10 @@ ITEM_PIPELINES = {
    'Scrapy_track.pipelines.ScrapyTrackPipeline': 300,
 }
 
+# If you wants to automatically save file in json then
+# FEEDS = {
+#     'booksdata.json': {'format': 'json'}
+# }
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
