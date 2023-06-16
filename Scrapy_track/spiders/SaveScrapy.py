@@ -2,7 +2,7 @@ import scrapy
 from Scrapy_track.items import BookItem
 
 class SaveScrapy(scrapy.Spider):
-    name = 'Save'
+    name = 'save'
     allowed_domains = ['books.toscrape.com']
     start_urls = ['https://books.toscrape.com/']
 

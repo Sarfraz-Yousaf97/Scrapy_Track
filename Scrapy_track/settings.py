@@ -62,9 +62,10 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'Scrapy_track.pipelines.ScrapyTrackPipeline': 300,
-}
+# ITEM_PIPELINES = {
+#    'Scrapy_track.pipelines.ScrapyTrackPipeline': 300,
+#    'Scrapy_track.pipelines.SaveToModelsPipeline': 400,
+# }
 
 # If you wants to automatically save file in json then
 # FEEDS = {
