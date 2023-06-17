@@ -13,11 +13,16 @@ SPIDER_MODULES = ['Scrapy_track.spiders']
 NEWSPIDER_MODULE = 'Scrapy_track.spiders'
 
 
+SCRAPEOPS_API_KEY = '0244298d-d5eb-431a-9934-b89ee9a09853' # signup at https://scrapeops.io
+SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/user-agents'
+SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
+SCRAPEOPS_NUM_RESULTS = 50
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'Scrapy_track (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -44,15 +49,24 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'Scrapy_track.middlewares.ScrapyTrackSpiderMiddleware': 543,
-#}
+
+
+
+
+# SPIDER_MIDDLEWARES = {
+# #    'Scrapy_track.middlewares.ScrapeOpsFakeUserAgentMiddleware': 400,
+#    'Scrapy_track.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware': 400,
+# #    'Scrapy_track.middlewares.ScrapyTrackSpiderMiddleware': 543,
+# }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'Scrapy_track.middlewares.ScrapyTrackDownloaderMiddleware': 543,
-#}
+#TODO You have to keep one of them scrapy middleware 
+DOWNLOADER_MIDDLEWARES = {
+
+    # 'Scrapy_track.middlewares.ScrapeOpsFakeUserAgentMiddleware': 400
+    'Scrapy_track.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware': 400,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -62,10 +76,10 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'Scrapy_track.pipelines.ScrapyTrackPipeline': 300,
+ITEM_PIPELINES = {
+   'Scrapy_track.pipelines.ScrapyTrackPipeline': 300,
 #    'Scrapy_track.pipelines.SaveToModelsPipeline': 400,
-# }
+}
 
 # If you wants to automatically save file in json then
 # FEEDS = {
