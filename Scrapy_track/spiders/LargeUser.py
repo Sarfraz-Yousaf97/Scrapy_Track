@@ -1,14 +1,13 @@
-#Please read following line.
-#in small projects You can use useragents like I mentiond this
-#But in large projects we use middleware that I'll learn in next
-
+#In this I will show you how to use middleware to crate alot of user-agentts
 
 
 import scrapy
 from Scrapy_track.items import BookItem
 import random
-class SaveScrapy(scrapy.Spider):
-    name = 'save'
+
+
+class LargeScrapyUserAgent(scrapy.Spider):
+    name = 'userAgent'
     allowed_domains = ['books.toscrape.com']
     start_urls = ['https://books.toscrape.com/']
 
@@ -24,8 +23,6 @@ class SaveScrapy(scrapy.Spider):
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15',
     # Add more User-Agent strings as needed
 ]
-
-
 
     def parse(self, response):
         books = response.css("article.product_pod")
