@@ -30,11 +30,11 @@ class ScrapyTrackPipeline:
 
 
         # Price --> convert to float
-        price_keys = ['price']
-        for price_key in price_keys:
-            value = adapter.get(price_key)
-            value = value.replace('£', '')
-            adapter[price_key] = str(value)
+        # price_keys = ['price']
+        # for price_key in price_keys:
+        #     value = adapter.get(price_key)
+        #     value = value.replace('£', '')
+        #     adapter[price_key] = str(value)
 
 
         ## Availability --> extract number of books in stock
@@ -58,46 +58,47 @@ class ScrapyTrackPipeline:
 import mysql.connector
 
 class SaveToModelsPipeline:
-    def __init__(self):
-        self.conn = mysql.connector.connect(
-            host = 'localhost',
-            user = 'root',
-            password = 'test3450',
-            database = 'books'
-        )
+    pass
+    # def __init__(self):
+    #     self.conn = mysql.connector.connect(
+    #         host = 'localhost',
+    #         user = 'root',
+    #         password = 'test3450',
+    #         database = 'books'
+    #     )
 
-        self.cur = self.conn.cursor()
+    #     self.cur = self.conn.cursor()
 
-        self.cur.execute("""
-            CREATE TABLE IF NOT EXISTS books(
-                id int NOT NULL auto_increment primary key, 
-                title text,
-                price DECIMAL,
-                description text,
-                category VARCHAR(255)
-            )
-            """)
+    #     self.cur.execute("""
+    #         CREATE TABLE IF NOT EXISTS books(
+    #             id int NOT NULL auto_increment primary key, 
+    #             title text,
+    #             price DECIMAL,
+    #             description text,
+    #             category VARCHAR(255)
+    #         )
+    #         """)
 
 
     def process_item(self, item, spider):
-
+        pass
         ## Define insert statement
-        self.cur.execute(""" insert into books (
-            title, 
-            price,
-            description,
-            category
-            ) values (
-                %s,
-                %s,
-                %s,
-                %s
-                )""", (
-            item["title"],
-            item["price"],
-            str(item["description"][0]), # 0 is added for adding only one char for demo
-            item["category"]
-        ))
+        # self.cur.execute(""" insert into books (
+        #     title, 
+        #     price,
+        #     description,
+        #     category
+        #     ) values (
+        #         %s,
+        #         %s,
+        #         %s,
+        #         %s
+        #         )""", (
+        #     item["title"],
+        #     item["price"],
+        #     str(item["description"][0]), # 0 is added for adding only one char for demo
+        #     item["category"]
+        # ))
 
         # ## Execute insert of data into database
         self.conn.commit()

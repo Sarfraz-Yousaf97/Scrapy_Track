@@ -19,8 +19,8 @@ SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 50
 # this is used after install pip install scrapeops-scrapy-proxy-sdk
 #TODO its is paid so I am going to comment it
-SCRAPEOPS_PROXY_ENABLED = True
-SCRAPEOPS_PROXY_SETTINGS = { 'country': 'us' }
+# SCRAPEOPS_PROXY_ENABLED = True
+# SCRAPEOPS_PROXY_SETTINGS = { 'country': 'us' }
 
 # ROTATING_PROXY_LIST = {
 #     '45.15.103.159:8081',
@@ -79,7 +79,8 @@ ROBOTSTXT_OBEY = False
 DOWNLOADER_MIDDLEWARES = {
     # 'Scrapy_track.middlewares.ScrapeOpsFakeUserAgentMiddleware': 400
     'Scrapy_track.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware': 400,
-    'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk':725
+    #this is paid that's why I am just commenting this
+    # 'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk':725
     
     # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
     # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
