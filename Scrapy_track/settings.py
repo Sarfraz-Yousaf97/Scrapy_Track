@@ -18,6 +18,14 @@ SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/user-agent
 SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 50
 
+ROTATING_PROXY_LIST = {
+    '173.201.183.110:80',
+    '111.225.153.181:8089',
+    '34.87.84.105:80',
+}
+
+
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'Scrapy_track (+http://www.yourdomain.com)'
 
@@ -62,10 +70,12 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #TODO You have to keep one of them scrapy middleware 
+#TODO Last Two Middleware is used for rotaing ip with scrapy-rotating-proxies
 DOWNLOADER_MIDDLEWARES = {
-
     # 'Scrapy_track.middlewares.ScrapeOpsFakeUserAgentMiddleware': 400
     'Scrapy_track.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware': 400,
+    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
 }
 
 # Enable or disable extensions
