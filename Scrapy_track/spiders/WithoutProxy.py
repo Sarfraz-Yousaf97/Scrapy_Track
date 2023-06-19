@@ -3,25 +3,12 @@
 
 import scrapy
 from Scrapy_track.items import BookItem
-import random
-from urllib.parse import urlencode
-API_KEY = '0244298d-d5eb-431a-9934-b89ee9a09853'
 
-def get_proxy_url(url):
-    payload= {'api_key': API_KEY, 'url': url}
-    proxy_url = 'https://proxy.scrapeops.io/v1/?' + urlencode(payload)
-    return proxy_url
-
-class LargeScrapyUserAgent(scrapy.Spider):
-    name = 'userAgent'
-    allowed_domains = ['books.toscrape.com', 'proxy.scrapeops.io']
+class WithoutScrapy(scrapy.Spider):
+    name = 'without'
+    allowed_domains = ['books.toscrape.com']
     start_urls = ['https://books.toscrape.com/']
 
-    def start_requests(self):
-        yield scrapy.Request(url=get_proxy_url(self.start_urls[0]), callback =self.parse)
-
-
-  
 
     def parse(self, response):
         books = response.css("article.product_pod")
