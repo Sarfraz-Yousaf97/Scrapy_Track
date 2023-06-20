@@ -55,7 +55,7 @@ class ScrapyTrackPipeline:
         return item
 
 
-import mysql.connector
+# import mysql.connector
 
 class SaveToModelsPipeline:
     pass
